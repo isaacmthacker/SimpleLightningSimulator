@@ -5,11 +5,13 @@ float lightningCutoff;
 float cloudHeight = 25;
 Clouds clouds;
 LightningManager lightning;
+Rain rain;
 void setup() {
   size(800, 500);
   lightningCutoff = height - (groundHeight/2.0);
   lightning = new LightningManager(lightningCutoff);
   clouds = new Clouds(cloudHeight);
+  rain = new Rain(groundHeight, cloudHeight);
 }
 
 
@@ -29,6 +31,7 @@ void drawBackground() {
   fill(color(0, 50, 0));
   stroke(color(0, 50, 0));
   rect(0, height-groundHeight, width, groundHeight);
+  rain.run();
   lightning.run();
   clouds.display();
 }
